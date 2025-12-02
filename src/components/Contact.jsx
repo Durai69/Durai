@@ -6,6 +6,7 @@ import { styles } from "../styles";
 import { EarthCanvas } from "./canvas";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
+import Toast from "./Toast";
 
 const Contact = () => {
   const formRef = useRef();
@@ -16,55 +17,84 @@ const Contact = () => {
   });
 
   const [loading, setLoading] = useState(false);
+  const [toast, setToast] = useState({
+    isVisible: false,
+    message: "",
+    type: "success",
+  });
+
+  const showToast = (message, type = "success") => {
+    setToast({ isVisible: true, message, type });
+  };
+
+  const hideToast = () => {
+    setToast((prev) => ({ ...prev, isVisible: false }));
+  };
 
   const handleChange = (e) => {
-    const { target } = e;
-    const { name, value } = target;
-
+    const { name, value } = e.target;
     setForm({
       ...form,
       [name]: value,
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validation
+    if (!form.name || form.name.length < 2) {
+      showToast("Please enter a valid name (minimum 2 characters)", "warning");
+      return;
+    }
+
+    if (!form.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+      showToast("Please enter a valid email address", "warning");
+      return;
+    }
+
+    if (!form.message || form.message.length < 10) {
+      showToast("Please enter a message (minimum 10 characters)", "warning");
+      return;
+    }
+
     setLoading(true);
 
-    emailjs
-      .send(
+    try {
+      await emailjs.send(
         import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
         {
-          from_name: form.name,
-          to_name: "Durai",
-          from_email: form.email,
-          to_email: "durai@gmail.com",
-          message: form.message,
+          name: form.name,
+          time: new Date().toLocaleString(),
+          message: `From: ${form.name}\nEmail: ${form.email}\n\n${form.message}`,
+          title: "New Contact Request",
         },
         import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
-      )
-      .then(
-        () => {
-          setLoading(false);
-          alert("Thank you. I will get back to you as soon as possible.");
-
-          setForm({
-            name: "",
-            email: "",
-            message: "",
-          });
-        },
-        (error) => {
-          setLoading(false);
-          console.error(error);
-
-          alert("Ahh, something went wrong. Please try again.");
-        }
       );
+
+      showToast("Thank you! I will get back to you as soon as possible.", "success");
+      setForm({
+        name: "",
+        email: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error(error);
+      showToast("Ahh, something went wrong. Please try again.", "error");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
+    <>
+      <Toast
+        message={toast.message}
+        type={toast.type}
+        isVisible={toast.isVisible}
+        onClose={hideToast}
+      />
     <div
       className={`xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden`}
     >
@@ -130,6 +160,7 @@ const Contact = () => {
         <EarthCanvas />
       </motion.div>
     </div>
+    </>
   );
 };
 
