@@ -173,72 +173,63 @@ const testimonials = [
 
 const projects = [
   {
-    name: "Tekisky Mart",
+    name: "LPG E-commerce Website",
     description:
-      "Tekisky Mart is a web-based platform that allows users to search, explore, and purchase a wide range of products from various providers, offering a seamless and efficient shopping experience.",
+      "Developed and deployed a responsive, minimal e-commerce site for a local LPG distributor, featuring services and an online request-quote interface with verified cross-device compatibility.",
     tags: [
       {
         name: "react",
         color: "blue-text-gradient",
       },
       {
-        name: "tailwind",
+        name: "css",
         color: "white-text-gradient",
       },
       {
-        name: "node",
+        name: "vercel",
         color: "pink-text-gradient",
       },
-      {
-        name: "mongodb",
-        color: "green-text-gradient",
-      },
- 
     ],
     image: project2,
-    source_code_link: "https://github.com/",
+    source_code_link: "https://srisingamudaiyaarlpgs.vercel.app",
   },
   {
-    name: "GearXpert",
+    name: "Contact Book Manager",
     description:
-      "GearXpert is your ultimate destination for premium auto parts and accessories, Whether you're an automobile enthusiast or a professional, find everything you need to upgrade, repair.",
+      "Engineered a desktop and command-line application in an academic group project to manage personal contacts, implementing full CRUD functionality and an intuitive Java Swing UI.",
     tags: [
       {
-        name: "react",
+        name: "java",
         color: "blue-text-gradient",
       },
       {
-        name: "emailJs",
-        color: "green-text-gradient",
+        name: "swing",
+        color: "white-text-gradient",
       },
       {
-        name: "Gsap",
-        color: "pink-text-gradient",
+        name: "cli",
+        color: "green-text-gradient",
       },
     ],
     image: gearXpert,
     source_code_link: "https://github.com/",
   },
   {
-    name: "GoGroove-Ecommerce",
+    name: "Internal Survey Portal",
     description:
-      "Go-Groove is your ultimate destination for premium products across various categories. Whether you're a savvy shopper or a professional, enhance, and simplify your lifestyle—all in one place!",
+      "Developed an internal web app enabling departments to survey each other to improve performance and collaboration. Built a Python back-end focusing on error handling and data validation to prevent crashes.",
     tags: [
       {
-        name: "react",
+        name: "python",
         color: "blue-text-gradient",
       },
       {
-        name: "express",
+        name: "flask",
         color: "white-text-gradient",
       },
       {
-        name: "node",
-        color: "green-text-gradient",
-      },
-      {
-        name: "mongodb",
-        color: "green-text-gradient",
+        name: "react",
+        color: "pink-text-gradient",
       },
     ],
     image: project3,
