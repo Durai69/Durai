@@ -72,7 +72,7 @@ const About = () => {
       </div>
 
       <p ref={paragraphRef} className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]">
-        I'm a Software Developer with experience in full-stack development, delivering solutions with Python, React, 
+        I'm a Web Developer with experience in full-stack development, delivering solutions with Python, React, 
         and MS SQL. Possesses a strong foundation in both Java and Python, with a primary focus on building efficient, scalable 
         back-end systems. Let's work together to bring your ideas to life!
       </p>

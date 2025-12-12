@@ -1,0 +1,6 @@
+# robots.txt for Durai Lingam Portfolio
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.durai.me/sitemap.xml
